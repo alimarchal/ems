@@ -15,6 +15,7 @@ class CreateQualificationsTable extends Migration
     {
         Schema::create('qualifications', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('employee_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('degree_name')->nullable();
             $table->string('passing_year')->nullable();
             $table->timestamps();

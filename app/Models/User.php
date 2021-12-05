@@ -58,4 +58,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public static function stagetProfilePhoto($name)
+    {
+        return "https://ui-avatars.com/api/?name=" . $name . "&color=7F9CF5&background=EBF4FF";
+    }
 }

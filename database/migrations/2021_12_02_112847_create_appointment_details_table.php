@@ -15,6 +15,7 @@ class CreateAppointmentDetailsTable extends Migration
     {
         Schema::create('appointment_details', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('employee_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->date('appointment_date')->nullable();
             $table->string('designation')->nullable();
             $table->string('scale')->nullable();

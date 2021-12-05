@@ -6,7 +6,8 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                        <img src="{{url('img/mdalogo.png')}}" class="block w-12 h-12 w-auto" >
+{{--                        <x-jet-application-mark class="block h-9 w-auto" />--}}
                     </a>
                 </div>
 
@@ -14,6 +15,10 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
+                    </x-jet-nav-link>
+
+                    <x-jet-nav-link href="{{ route('employee.index') }}" :active="request()->routeIs('employee.*')">
+                        {{ __('Employees') }}
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -74,8 +79,13 @@
                     <x-jet-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                                <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
+
+                                <button class="flex text-sm  border-2 hover:bg-gray-100 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
+                                    <span class="mt-2 mx-2">{{ Auth::user()->name }}</span>
                                     <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+                                    <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}" class="mt-2 inline w-4 h-4 transition-transform duration-200 transform rotate-0">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                    </svg>
                                 </button>
                             @else
                                 <span class="inline-flex rounded-md">
@@ -125,11 +135,14 @@
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
+
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
+
+
                 </button>
             </div>
         </div>
