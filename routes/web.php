@@ -17,10 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
-Route::middleware(['auth:sanctum'])->group(function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [ \App\Http\Controllers\DashboardController::class,'index'])->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('employee', \App\Http\Controllers\EmployeeController::class)->names('employee');
+    Route::resource('legalcase', \App\Http\Controllers\LegalCaseController::class)->names('legalCase');
 });

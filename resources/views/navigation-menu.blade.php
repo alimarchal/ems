@@ -20,6 +20,10 @@
                     <x-jet-nav-link href="{{ route('employee.index') }}" :active="request()->routeIs('employee.*')">
                         {{ __('Employees') }}
                     </x-jet-nav-link>
+
+                    <x-jet-nav-link href="{{ route('legalCase.index') }}" :active="request()->routeIs('legalCase.*')">
+                        {{ __('Legal Case') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 

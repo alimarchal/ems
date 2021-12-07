@@ -28,6 +28,7 @@ class CreateEmployeesTable extends Migration
             $table->string('emergency_contact')->nullable();
             $table->string('district_city')->nullable();
             $table->string('leave_status')->nullable();
+            $table->string('employee_status')->nullable();
             $table->string('profile_path')->nullable();
             $table->timestamps();
         });

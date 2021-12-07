@@ -117,5 +117,7 @@ class EmployeeController extends Controller
         $employee->appointment()->delete();
         $employee->qualification()->delete();
         $employee->delete();
+        session()->flash('message', 'Employee successfully deleted.');
+        return redirect()->route('employee.index');
     }
 }
