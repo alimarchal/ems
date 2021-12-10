@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Dashboard') }} - {{config('app.name')}}
         </h2>
     </x-slot>
     @include('vendor.jetstream.components.message')
@@ -9,7 +9,7 @@
     <div class="pb-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-12 gap-6 mt-5">
-                <a href="#" class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white">
+                <a href="{{route('employee.index')}}" class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white">
                     <div class="p-5">
                         <div class="grid grid-cols-3 gap-1">
                             <div class="col-span-2">
@@ -40,11 +40,11 @@
                         </div>
                     </div>
                 </a>
-                <a href="#" class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white">
+                <a href="{{route('legalcase.index')}}" class="transform  hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y bg-white">
                     <div class="p-5">
                         <div class="grid grid-cols-3 gap-1">
                             <div class="col-span-2">
-                                <div class="text-3xl font-bold leading-8">0</div>
+                                <div class="text-3xl font-bold leading-8">{{$legal_case}}</div>
 
                                 <div class="mt-1 text-base  font-bold text-gray-600">Legal cases</div>
                             </div>
@@ -115,9 +115,7 @@
                 width: '100%',
                 type: 'pie',
             },
-            fill: {
-                colors: ['#F44336', '#E91E63', '#9C27B0']
-            },
+
             markers: {
                 colors: ['#F44336', '#E91E63', '#9C27B0']
             },

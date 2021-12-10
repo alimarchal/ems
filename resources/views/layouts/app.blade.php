@@ -21,6 +21,8 @@
 {{--        <script src="{{ url('js/jquery-3.6.0.min.js') }}"></script>--}}
         <script src="{{ mix('js/app.js') }}" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />

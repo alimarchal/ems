@@ -1,15 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
         <span class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Employee Personal Information ') }}
+            {{ __('Employee leave list ') }}
         </span>
 
-        <a href="{{route('legalcase.create')}}" class=" float-right px-4 py-2
-        bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white
-        uppercase tracking-widest hover:bg-green-500 focus:outline-none focus:border-green-700
-        focus:ring focus:ring-green-200 active:bg-green-600 disabled:opacity-25 transition ">
-            Add Legal Case
-        </a>
+{{--        <a href="{{route('leave.create')}}" class=" float-right px-4 py-2--}}
+{{--        bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white--}}
+{{--        uppercase tracking-widest hover:bg-green-500 focus:outline-none focus:border-green-700--}}
+{{--        focus:ring focus:ring-green-200 active:bg-green-600 disabled:opacity-25 transition ">--}}
+{{--            Add Legal Case--}}
+{{--        </a>--}}
     </x-slot>
 
 
@@ -22,29 +22,29 @@
                 <table class="min-w-max w-full table-auto">
                     <thead>
                     <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                        <th class="py-3 px-6 text-left">Case Title</th>
-                        <th class="py-3 px-6 text-center">Description</th>
-                        <th class="py-3 px-6 text-center">Decision Date</th>
+                        <th class="py-3 px-6 text-left">Employee Name</th>
+                        <th class="py-3 px-6 text-center">Leave From </th>
+                        <th class="py-3 px-6 text-center">Leave To</th>
                         <th class="py-3 px-6 text-center">Attachment</th>
                         <th class="py-3 px-6 text-center">status</th>
                         <th class="py-3 px-6 text-center">Actions</th>
                     </tr>
                     </thead>
                     <tbody class="text-black text-sm font-light">
-                    @foreach($legalcase as $lc)
+                    @foreach($leaves as $lc)
                         <tr class="border-b border-gray-200 bg-white text-black hover:bg-gray-100">
                             <td class="py-3 px-6 text-left">
-                                {{$lc->case_title}}
+                                {{$lc->employee->first_name . ' ' . $lc->employee->last_name}}
                             </td>
                             <td class="py-3 px-6 text-center">
-                                {{$lc->description}}
+                                {{\Carbon\Carbon::parse($lc->leave_starting_date)->format('d-m-Y')}}
                             </td>
                             <td class="py-3 px-6 text-center">
-                                {{\Carbon\Carbon::parse($lc->decision_date)->format('d-m-Y')}}
+                                {{\Carbon\Carbon::parse($lc->leave_ending_date)->format('d-m-Y')}}
                             </td>
                             <td class="py-3 px-6 text-center">
-                                @if(!empty($lc->attachment))
-                                    <a href="{{Storage::url($lc->attachment)}}" target="_blank" class="mx-auto">
+                                @if(!empty($lc->attachment_path))
+                                    <a href="{{Storage::url($lc->attachment_path)}}" target="_blank" class="mx-auto">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                                     </svg>
@@ -102,7 +102,7 @@
                 </table>
 
 
-                {{ $legalcase->links() }}
+                {{ $leaves->links() }}
             </div>
 
 

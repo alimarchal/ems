@@ -81,9 +81,9 @@
                                             for="grid-data_of_birth">
                                             Date of birth
                                         </label>
-                                        <input name="data_of_birth" value="{{old('data_of_birth')}}"  class="appearance-none
+                                        <input name="data_of_birth"  onkeydown="return false"  value="{{old('data_of_birth')}}"  class="appearance-none
                                         block w-full bg-grey-lighter text-grey-darker
-                                        border border-red rounded py-3 px-4 mb-3" id="grid-data_of_birth" type="date">
+                                        border border-red rounded py-3 px-4 mb-3" id="grid-data_of_birth" type="date"  max="{{ now()->toDateString('Y-m-d') }}">
                                     </div>
 
                                 </div>
@@ -189,9 +189,9 @@
                                             for="grid-appointment_date">
                                             appointment date
                                         </label>
-                                        <input name="appointment_date" required="" value="{{old('appointment_date')}}" class="appearance-none
+                                        <input name="appointment_date"  onkeydown="return false"  required="" value="{{old('appointment_date')}}" class="appearance-none
                                         block w-full bg-grey-lighter text-grey-darker
-                                        border border-red rounded py-3 px-4 mb-3" id="grid-appointment_date" type="date">
+                                        border border-red rounded py-3 px-4 mb-3" id="grid-appointment_date" type="date"  max="{{ now()->toDateString('Y-m-d') }}">
                                     </div>
                                     <div class="md:w-1/2 px-3 mb-6 md:mb-0">
                                         <label
@@ -289,7 +289,7 @@
                                         </label>
                                         <input name="passing_year" class="appearance-none block w-full bg-grey-lighter
                                          text-grey-darker border border-grey-lighter rounded py-3 px-4"
-                                               id="grid-passing_year" value="{{old('passing_year')}}" type="date">
+                                               id="grid-passing_year" value="{{old('passing_year')}}" type="date"  onkeydown="return false"    max="{{ now()->toDateString('Y-m-d') }}">
 
                                     </div>
                                 </div>

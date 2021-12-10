@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\LegalCase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -21,8 +22,8 @@ class DashboardController extends Controller
         ->groupBy('gender')
         ->get();
         $age_range =  DB::select("select concat(10*floor(age/10), '-', 10*floor(age/10) + 10) as `range`, count(*) as count from ( select TIMESTAMPDIFF(YEAR,data_of_birth,CURDATE()) AS age from employees ) as t group by `range`;");
-
-        return view('dashboard',compact('employees','gender','age_range'));
+        $legal_case = LegalCase::count();
+        return view('dashboard',compact('employees','gender','age_range','legal_case'));
 
     }
 

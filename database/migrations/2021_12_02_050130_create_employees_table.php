@@ -27,6 +27,8 @@ class CreateEmployeesTable extends Migration
             $table->string('legal_heir')->nullable();
             $table->string('emergency_contact')->nullable();
             $table->string('district_city')->nullable();
+            $table->int('remaining_casual_leave')->default(25);
+            $table->int('remaining_privileged_leave')->default(48);
             $table->string('leave_status')->nullable();
             $table->string('employee_status')->nullable();
             $table->string('profile_path')->nullable();

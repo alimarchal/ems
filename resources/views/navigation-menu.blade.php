@@ -21,8 +21,12 @@
                         {{ __('Employees') }}
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ route('legalCase.index') }}" :active="request()->routeIs('legalCase.*')">
+                    <x-jet-nav-link href="{{ route('legalcase.index') }}" :active="request()->routeIs('legalcase.*')">
                         {{ __('Legal Case') }}
+                    </x-jet-nav-link>
+
+                    <x-jet-nav-link href="{{ route('leave.index') }}" :active="request()->routeIs('leave.*')">
+                        {{ __('Leave') }}
                     </x-jet-nav-link>
                 </div>
             </div>

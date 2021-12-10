@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use App\Models\LegalCase;
 use App\Http\Requests\StoreLegalCaseRequest;
 use App\Http\Requests\UpdateLegalCaseRequest;
@@ -15,8 +16,8 @@ class LegalCaseController extends Controller
      */
     public function index()
     {
-        $legalCase = LegalCase::paginate(10);
-        return view('legalcase.index', compact('legalCase'));
+        $legalcase = LegalCase::paginate(10);
+        return view('legalcase.index', compact('legalcase'));
     }
 
     /**
@@ -43,7 +44,7 @@ class LegalCaseController extends Controller
         }
         $legalCase = LegalCase::create($request->all());
         session()->flash('message', 'Legal case information successfully saved.');
-        return redirect()->route('legalCase.index');
+        return redirect()->route('legalcase.index');
     }
 
     /**
@@ -52,9 +53,10 @@ class LegalCaseController extends Controller
      * @param \App\Models\LegalCase $legalCase
      * @return \Illuminate\Http\Response
      */
-    public function show(LegalCase $legalCase)
+    public function show(LegalCase $legalcase)
     {
-        //
+
+        return view('legalcase.show', compact('legalcase'));
     }
 
     /**
@@ -63,9 +65,9 @@ class LegalCaseController extends Controller
      * @param \App\Models\LegalCase $legalCase
      * @return \Illuminate\Http\Response
      */
-    public function edit(LegalCase $legalCase)
+    public function edit(LegalCase $legalcase)
     {
-        return view('legalcase.edit', compact('legalCase'));
+        return view('legalcase.edit', compact('legalcase'));
     }
 
     /**
@@ -75,11 +77,15 @@ class LegalCaseController extends Controller
      * @param \App\Models\LegalCase $legalCase
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateLegalCaseRequest $request, LegalCase $legalCase)
+    public function update(UpdateLegalCaseRequest $request, LegalCase $legalcase)
     {
-        $legalCase->update($request->all());
+        if ($request->hasFile('file_path')) {
+            $path = $request->file('file_path')->store('', 'public');
+            $request->merge(['attachment' => $path]);
+        }
+        $legalcase->update($request->all());
         session()->flash('message', 'Legal case successfully updated.');
-        return redirect()->route('legalCase.index');
+        return redirect()->route('legalcase.index');
     }
 
     /**
@@ -88,10 +94,10 @@ class LegalCaseController extends Controller
      * @param \App\Models\LegalCase $legalCase
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LegalCase $legalCase)
+    public function destroy(LegalCase $legalcase)
     {
-        $legalCase->delete();
+        $legalcase->delete();
         session()->flash('message', 'Legal case successfully deleted.');
-        return redirect()->route('legalCase.index');
+        return redirect()->route('legalcase.index');
     }
 }

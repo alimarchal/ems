@@ -63,4 +63,12 @@ class User extends Authenticatable
     {
         return "https://ui-avatars.com/api/?name=" . $name . "&color=7F9CF5&background=EBF4FF";
     }
+
+    public static function total_leave(): array
+    {
+        return [
+            'Casual Leave' => 25,
+            'Privileged Leave' => 48
+        ];
+    }
 }

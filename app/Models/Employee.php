@@ -9,7 +9,7 @@ class Employee extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['employee_code', 'first_name', 'last_name', 'father_husband_name', 'cnic', 'data_of_birth', 'mobile', 'email', 'gender', 'legal_heir', 'emergency_contact', 'district_city', 'leave_status', 'profile_path',];
+    protected $fillable = ['employee_code', 'first_name', 'last_name', 'father_husband_name', 'cnic', 'data_of_birth', 'mobile', 'email', 'gender', 'legal_heir', 'emergency_contact', 'district_city', 'leave_status', 'profile_path', 'remaining_casual_leave', 'remaining_privileged_leave', 'employee_status'];
 
     public function qualification()
     {

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateLegalCaseRequest extends FormRequest
+class StoreLeaveRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,7 @@ class UpdateLegalCaseRequest extends FormRequest
     public function rules()
     {
         return [
-            'decision_date' => 'date_format:Y-m-d|before:today',
-            'case_title' => 'required',
-            'description' => 'required',
-            'status' => 'required',
+            //
         ];
     }
 }

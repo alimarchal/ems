@@ -16,7 +16,7 @@
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
-    <body>
+    <body style="background-image: url('{{url(Storage::url('login.jpg'))}}');background-size: cover;">
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
