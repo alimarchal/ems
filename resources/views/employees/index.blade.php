@@ -13,7 +13,103 @@
     </x-slot>
 
 
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myDIV");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+
+    </script>
+
+    <button type="button" onclick="myFunction()" class="float-right mr-24 mt-5 btn btn-light shadow-sm" data-toggle="collapse" data-target="#filters">Filters <i class="fa fa-filter"></i></button>
+
+
+
+    <br>
+    <br>
+
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" id="myDIV" style="display: none">
+            <form action="">
+                <div class="mb-3 -mx-2 flex items-end">
+                    <div class="px-2 w-1/2">
+                        <div>
+                            <label class="font-bold text-sm mb-2 ml-1">Search</label>
+                            <input name="filter[search_string]" value="" class="form-select w-full px-3 py-2 mb-1 border-2
+                            border-gray-200 rounded-md focus:outline-none
+                            focus:border-indigo-500 transition-colors cursor-pointer"/>
+
+                        </div>
+                    </div>
+                    <div class="px-2 w-1/2">
+                        <label class="font-bold text-sm mb-2 ml-1">CNIC</label>
+                        <input name="filter[cnic]" value=""
+                               class="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer"/>
+
+                    </div>
+                    <div class="px-2 w-1/2">
+                        <label class="font-bold text-sm mb-2 ml-1">Employee On Leave </label>
+                        <select name="filter[leave_status]" class="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer">
+                            <option value="">None</option>
+                                <option value="0">On Leave</option>
+                                <option value="1">Present</option>
+                        </select>
+                    </div>
+                    <div class="px-2 w-1/2">
+                        <label class="font-bold text-sm mb-2 ml-1">DISTRICT </label>
+                        <select name="filter[district_city]" class="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer">
+                            <option value="">None</option>
+                            <optgroup label="AJK">
+                                <option value="Muzaffarabad" >
+                                    Muzaffarabad</option>
+                                <option value="Hattian Bala" >
+                                    Hattian Bala</option>
+                                <option value="Neelum" >
+                                    Neelum</option>
+                                <option value="Mirpur" >
+                                    Mirpur</option>
+                                <option value="Bhimber" >
+                                    Bhimber</option>
+                                <option value="Kotli" >
+                                    Kotli</option>
+                                <option value="Poonch" >
+                                    Poonch</option>
+                                <option value="Bagh" >
+                                    Bagh</option>
+                                <option value="Haveli" >
+                                    Haveli</option>
+                                <option value="Sudhnati" >
+                                    Sudhnati</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                </div>
+
+
+                <button type="submit"  class=" float-right px-4 py-2
+                        bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white
+                        uppercase tracking-widest hover:bg-green-500 focus:outline-none focus:border-green-700
+                        focus:ring focus:ring-green-200 active:bg-green-600 disabled:opacity-25 transition ">
+                    Search
+                </button>
+
+
+            </form>
+        </div>
+
+
     <div class="py-12">
+
+
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 

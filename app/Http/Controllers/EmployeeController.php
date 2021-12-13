@@ -7,6 +7,8 @@ use App\Models\Employee;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
 use App\Models\Qualification;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class EmployeeController extends Controller
 {
@@ -17,7 +19,17 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::with('qualification', 'appointment')->paginate(10);
+        $employees = QueryBuilder::for(Employee::with('qualification', 'appointment'))
+            ->allowedFilters([
+                AllowedFilter::scope('search_string'),
+                'first_name',
+                AllowedFilter::exact('cnic'),
+                AllowedFilter::exact('leave_status'),
+                'date_of_birth',
+                'district_city',
+                'search',
+                'father_husband_name'])
+            ->paginate(10);
         return view('employees.index', compact('employees'));
     }
 
