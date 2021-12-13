@@ -353,7 +353,7 @@
                                                                 class="border-gray-300 @error('case_title') border-red-500 @enderror mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm  rounded-md">
                                                             <option value="">None</option>
                                                             @foreach($employees as $emp)
-                                                                <option value="{{$emp->id}}">{{$emp->first_name . " " . $emp->last_name}}</option>
+                                                                <option value="{{$emp->id}}"@if($emp->id == $leave->employee_id) selected @endif>{{$emp->first_name . " " . $emp->last_name}}</option>
                                                             @endforeach
                                                         </select>
                                                         @error('case_title')<span
@@ -367,7 +367,7 @@
                                                             Starting Date</label>
                                                         <input type="date" onkeydown="return false"
                                                                name="leave_starting_date" id="leave_starting_date"
-                                                               value="{{old('leave_starting_date')}}"
+                                                               value="{{$leave->leave_starting_date}}"
                                                                min="{{ now()->toDateString('Y-m-d') }}"
                                                                required="required"
                                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 @error('decision_date') border-red-500 @enderror rounded-md">
@@ -383,16 +383,38 @@
                                                         <input type="date" onkeydown="return false"
                                                                name="leave_ending_date" id="leave_ending_date"
                                                                min="{{ now()->toDateString('Y-m-d') }}"
-                                                               value="{{old('leave_ending_date')}}" required="required"
+                                                               value="{{$leave->leave_ending_date}}" required="required"
                                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 @error('decision_date') border-red-500 @enderror rounded-md">
                                                         @error('leave_ending_date')<span
                                                             class="text-red-500 mt-1 text-sm">{{ $message }}</span>@enderror
                                                     </div>
 
 
+
+
+                                                    <div class="col-span-6">
+                                                        <label for="reason" class="block text-sm font-medium text-gray-700">Reason</label>
+                                                        <textarea id="reason" name="reason" required="required" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 @error('reason') border-red-500 @enderror rounded-md" placeholder="Reason...">{{$leave->reason}}</textarea>
+                                                        @error('reason')<span class="text-red-500 mt-1 text-sm">{{ $message }}</span>@enderror
+                                                    </div>
+
+
+                                                    <div class="col-span-6 sm:col-span-3">
+                                                        <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+                                                        <select id="status" name="status"  autocomplete="nationality" class="mt-1 block w-full py-2 px-3 border border-gray-300 @error('status') border-red-500 @enderror bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                            <option value="" selected>Please select</option>
+                                                            <option value="Sub Judice" @if( $leave->status == 'Pending' ) selected="selected" @endif>Pending</option>
+                                                            <option value="Decided" @if( $leave->status == 'Approved' ) selected="selected" @endif>Approved</option>
+                                                            <option value="Decided" @if( $leave->status == 'Rejected' ) selected="selected" @endif>Rejected</option>
+                                                        </select>
+                                                        @error('status')<span class="text-red-500 mt-1 text-sm">{{ $message }}</span>@enderror
+                                                    </div>
+
+
+
                                                     <div class="col-span-6 sm:col-span-2 sm:text-center">
                                                         <label for="file_path" class="block text-sm font-medium text-gray-700">Attachment (If any)</label>
-                                                        <div class="mt-2">
+                                                        <div class="mt-0">
                                                             <input type="file" name="file_path" id="file_path" class="mt-2 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                                         </div>
                                                     </div>

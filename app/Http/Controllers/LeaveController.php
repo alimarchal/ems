@@ -29,7 +29,6 @@ class LeaveController extends Controller
     public function create()
     {
         $employees = Employee::all();
-//        dd($employees);
         return view('leaves.create', compact('employees'));
     }
 
@@ -59,7 +58,8 @@ class LeaveController extends Controller
      */
     public function show(Leave $leave)
     {
-        //
+        $employees = Employee::all();
+        return view('leaves.show', compact('leave','employees'));
     }
 
     /**
@@ -70,7 +70,8 @@ class LeaveController extends Controller
      */
     public function edit(Leave $leave)
     {
-        //
+        $employees = Employee::all();
+        return view('leaves.edit', compact('leave','employees'));
     }
 
     /**

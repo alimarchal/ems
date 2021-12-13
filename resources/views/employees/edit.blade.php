@@ -177,6 +177,36 @@
 
                                 </div>
 
+
+                                <div class="-mx-3 md:flex mb-3">
+                                    <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+                                        <label
+                                            class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                            for="grid-issue_date">
+                                            CNIC Issue Date
+                                        </label>
+                                        <input name="issue_date" onkeydown="return false" value="{{$employee->issue_date}}"
+                                               class="appearance-none
+                                        block w-full bg-grey-lighter text-grey-darker
+                                        border border-red rounded py-3 px-4 mb-3" id="grid-issue_date" type="date"
+                                               max="{{ now()->toDateString('Y-m-d') }}">
+                                    </div>
+                                    <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+                                        <label
+                                            class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                            for="grid-expiry_date">
+                                            CNIC Expiry Date
+                                        </label>
+                                        <input name="expiry_date" onkeydown="return false"
+                                               value="{{$employee->expiry_date}}" class="appearance-none
+                                        block w-full bg-grey-lighter text-grey-darker
+                                        border border-red rounded py-3 px-4 mb-3" id="grid-expiry_date" type="date"
+                                               min="{{ now()->toDateString('Y-m-d') }}">
+                                    </div>
+                                </div>
+
+
+
                                 <h1 class="text-center text-2xl mb-2 mt-4 text-black text-bold ">
                                     Initial Appointment Details
                                 </h1>

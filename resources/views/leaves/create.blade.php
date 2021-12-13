@@ -390,6 +390,25 @@
                                                     </div>
 
 
+                                                    <div class="col-span-6">
+                                                        <label for="reason" class="block text-sm font-medium text-gray-700">Reason</label>
+                                                        <textarea id="reason" name="reason" required="required" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 @error('reason') border-red-500 @enderror rounded-md" placeholder="Reason...">{{old('reason')}}</textarea>
+                                                        @error('reason')<span class="text-red-500 mt-1 text-sm">{{ $message }}</span>@enderror
+                                                    </div>
+
+
+                                                    <div class="col-span-6 sm:col-span-3">
+                                                        <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+                                                        <select id="status" name="status"  autocomplete="nationality" class="mt-1 block w-full py-2 px-3 border border-gray-300 @error('status') border-red-500 @enderror bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                            <option value="" selected>Please select</option>
+                                                            <option value="Pending" @if( old('Pending') == 'Pending' ) selected="selected" @endif>Pending</option>
+                                                            <option value="Approved" @if( old('Approved') == 'Approved' ) selected="selected" @endif>Approved</option>
+                                                            <option value="Rejected" @if( old('Rejected') == 'Rejected' ) selected="selected" @endif>Rejected</option>
+                                                        </select>
+                                                        @error('status')<span class="text-red-500 mt-1 text-sm">{{ $message }}</span>@enderror
+                                                    </div>
+
+
                                                     <div class="col-span-6 sm:col-span-2 sm:text-center">
                                                         <label for="file_path" class="block text-sm font-medium text-gray-700">Attachment (If any)</label>
                                                         <div class="mt-2">

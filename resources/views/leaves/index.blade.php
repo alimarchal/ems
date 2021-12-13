@@ -62,7 +62,7 @@
                             <td class="py-3 px-6 text-center">
                                 <div class="flex item-center justify-center">
                                     <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                        <a href="{{route('legalcase.show', $lc->id)}}">
+                                        <a href="{{route('leave.show', $lc->id)}}">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                  stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -73,7 +73,7 @@
                                         </a>
                                     </div>
                                     <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                        <a href="{{route('legalcase.edit', $lc->id)}}">
+                                        <a href="{{route('leave.edit', $lc->id)}}">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                  stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -82,7 +82,7 @@
                                         </a>
                                     </div>
                                     <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                        <form action="{{route('legalcase.destroy', $lc->id)}}" method="post" onSubmit="if(!confirm('Are you sure you want to delete?')){return false;}">
+                                        <form action="{{route('leave.destroy', $lc->id)}}" method="post" onSubmit="if(!confirm('Are you sure you want to delete?')){return false;}">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="w-4">
