@@ -16,6 +16,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        
         $employees = Employee::all();
 
         $gender = Employee::select(DB::raw('gender'), DB::raw('count(*) As total'))
