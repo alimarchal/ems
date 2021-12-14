@@ -17,7 +17,7 @@
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-
+            <x-alert/>
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <table class="min-w-max w-full table-auto">
                     <thead>

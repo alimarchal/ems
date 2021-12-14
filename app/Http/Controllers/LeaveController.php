@@ -83,7 +83,14 @@ class LeaveController extends Controller
      */
     public function update(UpdateLeaveRequest $request, Leave $leave)
     {
-        //
+        if ($request->hasFile('file_path')) {
+            $path = $request->file('file_path')->store('', 'public');
+            $request->merge(['attachment_path' => $path]);
+        }
+
+        $leave->update($request->all());
+        session()->flash('message', 'leave successfully updated.');
+        return redirect()->route('leave.index');
     }
 
     /**
@@ -94,6 +101,8 @@ class LeaveController extends Controller
      */
     public function destroy(Leave $leave)
     {
-        //
+        $leave->delete();
+        session()->flash('message', 'Leave successfully deleted.');
+        return redirect()->route('leave.index');
     }
 }

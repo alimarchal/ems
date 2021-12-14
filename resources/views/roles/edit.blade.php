@@ -9,6 +9,7 @@
         <div class="max-w-7xl mx-auto py-5">
 
             <x-alert/>
+            @include('vendor.jetstream.components.message')
 
             <form action="{{route('role.permission_update',$permission->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf

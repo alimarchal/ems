@@ -9,7 +9,7 @@ class Leave extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['employee_id', 'leave_starting_date', 'leave_ending_date', 'attachment_path'];
+    protected $fillable = ['employee_id', 'leave_starting_date', 'leave_ending_date', 'attachment_path','reason','no_of_days','status'];
 
 
     public function employee(): \Illuminate\Database\Eloquent\Relations\BelongsTo

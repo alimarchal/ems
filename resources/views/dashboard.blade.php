@@ -73,7 +73,7 @@
                     <div class="p-5">
                         <div class="grid grid-cols-3 gap-1">
                             <div class="col-span-2">
-                                <div class="text-3xl font-bold leading-8">0</div>
+                                <div class="text-3xl font-bold leading-8">{{$OnLeave}}</div>
 
                                 <div class="mt-1 text-base  font-bold text-gray-600">Employees on leave</div>
                             </div>
