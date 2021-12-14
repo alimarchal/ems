@@ -28,6 +28,10 @@
                     <x-jet-nav-link href="{{ route('leave.index') }}" :active="request()->routeIs('leave.*')">
                         {{ __('Leave') }}
                     </x-jet-nav-link>
+
+                    <x-jet-nav-link href="{{ route('action.index') }}" :active="request()->routeIs('action.*')">
+                        {{ __('Actions') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 
