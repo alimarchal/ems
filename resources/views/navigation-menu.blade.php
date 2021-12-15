@@ -5,14 +5,14 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('dashboard') }}" class="flex justify-start items-center">
                         <img src="{{url('img/mdalogo.png')}}" class="block w-12 h-12 w-auto" >
-{{--                        <x-jet-application-mark class="block h-9 w-auto" />--}}
+                        <h1 class="font-bold text-lg md:text-2xl text-gray-600 leading-tight ml-4">{{config('app.name')}}</h1>
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                {{--<div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
@@ -32,7 +32,7 @@
                     <x-jet-nav-link href="{{ route('action.index') }}" :active="request()->routeIs('action.*')">
                         {{ __('Actions') }}
                     </x-jet-nav-link>
-                </div>
+                </div>--}}
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -162,11 +162,11 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
+        {{--<div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
-        </div>
+        </div>--}}
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">

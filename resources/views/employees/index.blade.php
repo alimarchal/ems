@@ -1,113 +1,101 @@
 <x-app-layout>
     <x-slot name="header">
-        <span class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Employee Personal Information ') }}
-        </span>
+        <div class="flex justify-between items-center">
+            <span class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Employees') }}
+            </span>
 
-        <a href="{{route('employee.create')}}" class=" float-right px-4 py-2
-        bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white
-        uppercase tracking-widest hover:bg-green-500 focus:outline-none focus:border-green-700
-        focus:ring focus:ring-green-200 active:bg-green-600 disabled:opacity-25 transition ">
-            Add Employee
-        </a>
+            <div class="flex justify-center items-center float-right">
+                <a href="{{url('dashboard')}}" class="flex items-center px-4 py-2 text-gray-600 bg-white border rounded-lg focus:outline-none hover:bg-gray-100 transition-colors duration-200 transform dark:text-gray-200 dark:border-gray-200  dark:hover:bg-gray-700 ml-2" title="Members List">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                    <span class="hidden md:inline-block ml-2">Home</span>
+                </a>
+
+                <a href="javascript:;" id="toggle" class="flex items-center px-4 py-2 text-gray-600 bg-white border rounded-lg focus:outline-none hover:bg-gray-100 transition-colors duration-200 transform dark:text-gray-200 dark:border-gray-200  dark:hover:bg-gray-700 ml-2" title="Members List">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                    </svg>
+                    <span class="hidden md:inline-block ml-2">Search Filters</span>
+                </a>
+
+            </div>
+        </div>
     </x-slot>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="display: none" id="filters">
+            <div class="rounded-xl p-4 bg-white shadow-lg">
+                <form action="">
+                    <div class="mb-3 -mx-2 flex items-end">
+                        <div class="px-2 w-1/2">
+                            <div>
+                                <label class="font-bold text-sm mb-2 ml-1">Search</label>
+                                <input name="filter[search_string]" value="" class="form-select w-full px-3 py-2 mb-1 border-2
+                                border-gray-200 rounded-md focus:outline-none
+                                focus:border-indigo-500 transition-colors cursor-pointer"/>
 
-
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        function myFunction() {
-            var x = document.getElementById("myDIV");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
-        }
-
-    </script>
-
-    <button type="button" onclick="myFunction()" class="float-right mr-24 mt-5 btn btn-light shadow-sm" data-toggle="collapse" data-target="#filters">Filters <i class="fa fa-filter"></i></button>
-
-
-
-    <br>
-    <br>
-
-
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" id="myDIV" style="display: none">
-            <form action="">
-                <div class="mb-3 -mx-2 flex items-end">
-                    <div class="px-2 w-1/2">
-                        <div>
-                            <label class="font-bold text-sm mb-2 ml-1">Search</label>
-                            <input name="filter[search_string]" value="" class="form-select w-full px-3 py-2 mb-1 border-2
-                            border-gray-200 rounded-md focus:outline-none
-                            focus:border-indigo-500 transition-colors cursor-pointer"/>
+                            </div>
+                        </div>
+                        <div class="px-2 w-1/2">
+                            <label class="font-bold text-sm mb-2 ml-1">CNIC</label>
+                            <input name="filter[cnic]" value=""
+                                   class="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer"/>
 
                         </div>
-                    </div>
-                    <div class="px-2 w-1/2">
-                        <label class="font-bold text-sm mb-2 ml-1">CNIC</label>
-                        <input name="filter[cnic]" value=""
-                               class="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer"/>
+                        <div class="px-2 w-1/2">
+                            <label class="font-bold text-sm mb-2 ml-1">Employee On Leave </label>
+                            <select name="filter[leave_status]" class="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer">
+                                <option value="">None</option>
+                                    <option value="0">On Leave</option>
+                                    <option value="1">Present</option>
+                            </select>
+                        </div>
+                        <div class="px-2 w-1/2">
+                            <label class="font-bold text-sm mb-2 ml-1">DISTRICT </label>
+                            <select name="filter[district_city]" class="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer">
+                                <option value="">None</option>
+                                <optgroup label="AJK">
+                                    <option value="Muzaffarabad" >
+                                        Muzaffarabad</option>
+                                    <option value="Hattian Bala" >
+                                        Hattian Bala</option>
+                                    <option value="Neelum" >
+                                        Neelum</option>
+                                    <option value="Mirpur" >
+                                        Mirpur</option>
+                                    <option value="Bhimber" >
+                                        Bhimber</option>
+                                    <option value="Kotli" >
+                                        Kotli</option>
+                                    <option value="Poonch" >
+                                        Poonch</option>
+                                    <option value="Bagh" >
+                                        Bagh</option>
+                                    <option value="Haveli" >
+                                        Haveli</option>
+                                    <option value="Sudhnati" >
+                                        Sudhnati</option>
+                                </optgroup>
+                            </select>
+                        </div>
 
                     </div>
-                    <div class="px-2 w-1/2">
-                        <label class="font-bold text-sm mb-2 ml-1">Employee On Leave </label>
-                        <select name="filter[leave_status]" class="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer">
-                            <option value="">None</option>
-                                <option value="0">On Leave</option>
-                                <option value="1">Present</option>
-                        </select>
-                    </div>
-                    <div class="px-2 w-1/2">
-                        <label class="font-bold text-sm mb-2 ml-1">DISTRICT </label>
-                        <select name="filter[district_city]" class="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer">
-                            <option value="">None</option>
-                            <optgroup label="AJK">
-                                <option value="Muzaffarabad" >
-                                    Muzaffarabad</option>
-                                <option value="Hattian Bala" >
-                                    Hattian Bala</option>
-                                <option value="Neelum" >
-                                    Neelum</option>
-                                <option value="Mirpur" >
-                                    Mirpur</option>
-                                <option value="Bhimber" >
-                                    Bhimber</option>
-                                <option value="Kotli" >
-                                    Kotli</option>
-                                <option value="Poonch" >
-                                    Poonch</option>
-                                <option value="Bagh" >
-                                    Bagh</option>
-                                <option value="Haveli" >
-                                    Haveli</option>
-                                <option value="Sudhnati" >
-                                    Sudhnati</option>
-                            </optgroup>
-                        </select>
+
+                    <div class="text-center">
+                        <button type="submit"  class=" px-4 py-2
+                                bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white
+                                uppercase tracking-widest hover:bg-green-500 focus:outline-none focus:border-green-700
+                                focus:ring focus:ring-green-200 active:bg-green-600 disabled:opacity-25 transition ">
+                            Search
+                        </button>
                     </div>
 
-                </div>
-
-
-                <button type="submit"  class=" float-right px-4 py-2
-                        bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white
-                        uppercase tracking-widest hover:bg-green-500 focus:outline-none focus:border-green-700
-                        focus:ring focus:ring-green-200 active:bg-green-600 disabled:opacity-25 transition ">
-                    Search
-                </button>
-
-
-            </form>
+                </form>
+            </div>
         </div>
 
 
-    <div class="py-12">
+    <div class="py-6">
 
 
 
@@ -219,6 +207,17 @@
         </div>
 
     </div>
+    <script type="text/javascript">
+        const targetDiv = document.getElementById("filters");
+        const btn = document.getElementById("toggle");
+        btn.onclick = function () {
+            if (targetDiv.style.display !== "none") {
+                targetDiv.style.display = "none";
+            } else {
+                targetDiv.style.display = "block";
+            }
+        };
 
+    </script>
 
 </x-app-layout>

@@ -84,6 +84,7 @@ class PermissionsDemoSeeder extends Seeder
 
         // gets all permissions via Gate::before rule; see AuthServiceProvider
         // detail documentation https://spatie.be/docs/laravel-permission/v5/basic-usage/new-app
+        //php artisan migrate:fresh --seed --seeder=PermissionsDemoSeeder
 
         // create demo users
         $user = \App\Models\User::factory()->create([

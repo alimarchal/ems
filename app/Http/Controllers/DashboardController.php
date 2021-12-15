@@ -16,17 +16,29 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $myrole = auth()->user()->getRoleNames()->first();
+        if($myrole == 'Administrator')
+        {
+            $employees = Employee::all();
 
-        $employees = Employee::all();
+            $gender = Employee::select(DB::raw('gender'), DB::raw('count(*) As total'))
+                ->groupBy('gender')
+                ->get();
+            $age_range =  DB::select("select concat(10*floor(age/10), '-', 10*floor(age/10) + 10) as `range`, count(*) as count from ( select TIMESTAMPDIFF(YEAR,data_of_birth,CURDATE()) AS age from employees ) as t group by `range`;");
+            $legal_case = LegalCase::count();
 
-        $gender = Employee::select(DB::raw('gender'), DB::raw('count(*) As total'))
-        ->groupBy('gender')
-        ->get();
-        $age_range =  DB::select("select concat(10*floor(age/10), '-', 10*floor(age/10) + 10) as `range`, count(*) as count from ( select TIMESTAMPDIFF(YEAR,data_of_birth,CURDATE()) AS age from employees ) as t group by `range`;");
-        $legal_case = LegalCase::count();
+            $OnLeave = $employees->where('leave_status','OnLeave')->count();
+            return view('dashboard',compact('employees','gender','age_range','legal_case','OnLeave'));
+        }
+        else if($myrole == 'Manager')
+        {
+            return view('dashboard_manager');
+        }
+        else
+        {
+            return view('dashboard_employee');
+        }
 
-        $OnLeave = $employees->where('leave_status','OnLeave')->count();
-        return view('dashboard',compact('employees','gender','age_range','legal_case','OnLeave'));
 
     }
 
