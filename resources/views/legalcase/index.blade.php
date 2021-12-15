@@ -1,15 +1,34 @@
 <x-app-layout>
     <x-slot name="header">
         <span class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Employee Personal Information ') }}
+            {{ __('Legal Cases') }}
         </span>
 
-        <a href="{{route('legalcase.create')}}" class=" float-right px-4 py-2
-        bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white
-        uppercase tracking-widest hover:bg-green-500 focus:outline-none focus:border-green-700
-        focus:ring focus:ring-green-200 active:bg-green-600 disabled:opacity-25 transition ">
-            Add Legal Case
-        </a>
+        <div class="flex justify-center items-center float-right">
+            <a href="{{url('dashboard')}}" class="flex items-center px-4 py-2 text-gray-600 bg-white border rounded-lg focus:outline-none hover:bg-gray-100 transition-colors duration-200 transform dark:text-gray-200 dark:border-gray-200  dark:hover:bg-gray-700 ml-2" title="Members List">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                <span class="hidden md:inline-block ml-2">Home</span>
+            </a>
+
+            @can('Create Legal Case')
+                <a href="{{route('legalcase.create')}}"  class="flex items-center px-4 py-2 text-gray-600 bg-white border rounded-lg focus:outline-none hover:bg-gray-100 transition-colors duration-200 transform dark:text-gray-200 dark:border-gray-200  dark:hover:bg-gray-700 ml-2" title="Members List">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                    </svg>
+                    <span class="hidden md:inline-block ml-2">Add Legal Case</span>
+                </a>
+            @endcan
+
+            <a href="javascript:;" id="toggle" class="flex items-center px-4 py-2 text-gray-600 bg-white border rounded-lg focus:outline-none hover:bg-gray-100 transition-colors duration-200 transform dark:text-gray-200 dark:border-gray-200  dark:hover:bg-gray-700 ml-2" title="Members List">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                </svg>
+                <span class="hidden md:inline-block ml-2">Search Filters</span>
+            </a>
+
+        </div>
     </x-slot>
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Designation;
 use App\Models\Employee;
 use App\Models\LegalCase;
 use Illuminate\Http\Request;
@@ -30,9 +31,11 @@ class DashboardController extends Controller
                 ->get();
             $age_range = DB::select("select concat(10*floor(age/10), '-', 10*floor(age/10) + 10) as `range`, count(*) as count from ( select TIMESTAMPDIFF(YEAR,data_of_birth,CURDATE()) AS age from employees ) as t group by `range`;");
             $legal_case = LegalCase::count();
+            $vacant_post = Designation::sum('no_of_posts');
+
 
             $OnLeave = $employees->where('leave_status', 'OnLeave')->count();
-            return view('dashboard', compact('employees', 'gender', 'age_range', 'legal_case', 'OnLeave'));
+            return view('dashboard', compact('employees', 'gender', 'age_range', 'legal_case', 'OnLeave','vacant_post'));
         } else {
             return view('dashboard_employee');
         }

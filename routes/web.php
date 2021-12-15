@@ -22,7 +22,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('employee', \App\Http\Controllers\EmployeeController::class)->names('employee');
     Route::resource('legalcase', \App\Http\Controllers\LegalCaseController::class)->names('legalcase');
     Route::resource('leave', \App\Http\Controllers\LeaveController::class)->names('leave');
-    Route::resource('action', \App\Http\Controllers\ActionController::class)->names('action');
     Route::resource('designation', \App\Http\Controllers\DesignationController::class)->names('designation');
     Route::resource('subdepartment', \App\Http\Controllers\SubdepartmentController::class)->names('subdepartment');
 
