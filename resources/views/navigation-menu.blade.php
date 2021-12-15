@@ -1,12 +1,12 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
+        <div class="flex justify-between h-24">
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" class="flex justify-start items-center">
-                        <img src="{{url('img/mdalogo.png')}}" class="block w-12 h-12 w-auto" >
+                        <img src="{{url('img/mdalogo.png')}}" class="block w-20 h-20 w-auto" >
                         <h1 class="font-bold text-lg md:text-2xl text-gray-600 leading-tight ml-4">{{config('app.name')}}</h1>
                     </a>
                 </div>
