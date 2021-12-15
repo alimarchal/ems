@@ -23,6 +23,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('legalcase', \App\Http\Controllers\LegalCaseController::class)->names('legalcase');
     Route::resource('leave', \App\Http\Controllers\LeaveController::class)->names('leave');
     Route::resource('action', \App\Http\Controllers\ActionController::class)->names('action');
+    Route::resource('designation', \App\Http\Controllers\DesignationController::class)->names('designation');
 
     Route::get('role/create', [\App\Http\Controllers\RolePermission::class,'create'])->name('role.create');
     Route::post('role', [\App\Http\Controllers\RolePermission::class,'store'])->name('role.store');
@@ -30,7 +31,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('role/{id}/edit', [\App\Http\Controllers\RolePermission::class,'edit'])->name('role.edit');
     Route::delete('role/{id}', [\App\Http\Controllers\RolePermission::class,'destroy'])->name('role.destroy');
     Route::put('role/{id}', [\App\Http\Controllers\RolePermission::class,'update'])->name('role.update');
-
 
 
     Route::get('permission/create', [\App\Http\Controllers\RolePermission::class,'permission_create'])->name('role.permission_create');
