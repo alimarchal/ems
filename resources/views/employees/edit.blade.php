@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <span class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Edit Employees') }}
+                {{ __('Edit Employee') }}
             </span>
 
             <div class="flex justify-center items-center float-right">
