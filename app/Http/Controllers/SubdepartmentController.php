@@ -15,7 +15,7 @@ class SubdepartmentController extends Controller
      */
     public function index()
     {
-        $subdepartment = Subdepartment::paginate(10);
+        $subdepartment = Subdepartment::where('parent_id','0')->get();
         return view('subdepartment.index', compact('subdepartment'));
     }
 
@@ -39,7 +39,7 @@ class SubdepartmentController extends Controller
     public function store(StoreSubdepartmentRequest $request)
     {
         $designation = Subdepartment::create($request->all());
-        session()->flash('message', 'Sub Department successfully created.');
+        session()->flash('message', 'Directorate successfully created.');
         return redirect()->route('subdepartment.index');
     }
 
@@ -51,7 +51,8 @@ class SubdepartmentController extends Controller
      */
     public function show(Subdepartment $subdepartment)
     {
-        return view('subdepartment.show', compact('subdepartment'));
+        $parents = Subdepartment::where('parent_id','0')->get();
+        return view('subdepartment.show', compact('subdepartment','parents'));
     }
 
     /**
@@ -62,8 +63,8 @@ class SubdepartmentController extends Controller
      */
     public function edit(Subdepartment $subdepartment)
     {
-        $sub_department = Subdepartment::all();
-        return view('subdepartment.edit', compact('subdepartment','sub_department'));
+        $parents = Subdepartment::where('parent_id','0')->get();
+        return view('subdepartment.edit', compact('subdepartment','parents'));
     }
 
     /**
@@ -76,7 +77,7 @@ class SubdepartmentController extends Controller
     public function update(UpdateSubdepartmentRequest $request, Subdepartment $subdepartment)
     {
         $subdepartment->update($request->all());
-        session()->flash('message', 'Sub department successfully updated.');
+        session()->flash('message', 'Directorate successfully updated.');
         return redirect()->route('subdepartment.index');
     }
 
@@ -89,7 +90,7 @@ class SubdepartmentController extends Controller
     public function destroy(Subdepartment $subdepartment)
     {
         $subdepartment->delete();
-        session()->flash('message', 'Sub department successfully deleted.');
+        session()->flash('message', 'Directorate successfully deleted.');
         return redirect()->route('subdepartment.index');
     }
 }

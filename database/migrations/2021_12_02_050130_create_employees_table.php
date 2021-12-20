@@ -33,6 +33,7 @@ class CreateEmployeesTable extends Migration
             $table->string('district_city')->nullable();
             $table->integer('remaining_casual_leave')->default(25);
             $table->integer('remaining_privileged_leave')->default(48);
+            $table->integer('employee_salary')->default(0);
             $table->enum('leave_status',['Present','OnLeave'])->nullable();
             $table->enum('employee_status',['Retired','InService','Resigned'])->nullable();
             $table->string('profile_path')->nullable();

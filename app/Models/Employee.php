@@ -15,7 +15,7 @@ class Employee extends Model
     protected $fillable = ['employee_code', 'first_name', 'last_name', 'father_husband_name', 'cnic', 'data_of_birth',
         'mobile', 'email', 'gender', 'legal_heir', 'emergency_contact', 'district_city', 'leave_status', 'profile_path',
         'remaining_casual_leave', 'remaining_privileged_leave', 'employee_status',
-        'issue_date', 'expiry_date', 'designation_id', 'subdepartment_id'
+        'issue_date', 'expiry_date', 'designation_id', 'subdepartment_id','employee_salary'
     ];
 
     public function qualification()

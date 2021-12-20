@@ -16,4 +16,14 @@ class Subdepartment extends Model
     {
         return $this->hasMany(Employee::class);
     }
+
+    public function children()
+    {
+        return $this->hasMany(Subdepartment::class, 'parent_id', 'id');
+    }
+
+    public function parent()
+    {
+        return $this->hasOne(Subdepartment::class , 'id','parent_id');
+    }
 }

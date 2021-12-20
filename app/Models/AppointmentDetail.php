@@ -9,4 +9,10 @@ class AppointmentDetail extends Model
 {
     use HasFactory;
     protected $fillable = ['employee_id','appointment_date','designation','scale','employee_type',];
+
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class,'employee_id');
+    }
 }

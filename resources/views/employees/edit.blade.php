@@ -39,15 +39,7 @@
                             @csrf
                             <div class="bg-white rounded px-8 pt-6 pb-8 ">
                                 <div class="-mx-3 md:flex mb-1">
-                                    <div class="md:w-1/2 px-3 ">
-                                        <label
-                                            class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                                            for="grid-employee-code">
-                                            employee code
-                                        </label>
-                                        <input name="employee_code" value="{{$employee->employee_code}}" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="grid-employee-code" type="text">
-                                    </div>
-                                    <div class="md:w-1/2 px-3 ">
+                                    <div class="md:w-1/2 px-3">
                                         <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-first_name">
                                             First Name
                                         </label>
@@ -63,10 +55,6 @@
                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
                                                id="grid-last_name"  value="{{$employee->last_name}}" type="text">
                                     </div>
-                                </div>
-
-
-                                <div class="-mx-3 md:flex mb-1">
                                     <div class="md:w-1/2 px-3">
                                         <label
                                             class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
@@ -77,8 +65,9 @@
                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
                                                id="grid-father_husband_name"  value="{{$employee->father_husband_name}}" type="text">
                                     </div>
-
-                                    <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+                                </div>
+                                <div class="-mx-3 md:flex mb-1">
+                                    <div class="md:w-1/2 px-3">
                                         <label
                                             class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                                             for="grid-cnic">
@@ -89,7 +78,33 @@
                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
                                                id="grid-cnic" type="text" value="{{$employee->cnic}}" >
                                     </div>
-                                    <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+                                    <div class="md:w-1/2 px-3">
+                                        <label
+                                            class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                            for="grid-issue_date">
+                                            CNIC Issue Date
+                                        </label>
+                                        <input name="issue_date" onkeydown="return false" value="{{$employee->issue_date}}"
+                                               class="appearance-none
+                                        block w-full bg-grey-lighter text-grey-darker
+                                        border border-red rounded py-3 px-4 mb-3" id="grid-issue_date" type="date"
+                                               max="{{ now()->toDateString('Y-m-d') }}">
+                                    </div>
+                                    <div class="md:w-1/2 px-3">
+                                        <label
+                                            class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                            for="grid-expiry_date">
+                                            CNIC Expiry Date
+                                        </label>
+                                        <input name="expiry_date" onkeydown="return false"
+                                               value="{{$employee->expiry_date}}" class="appearance-none
+                                        block w-full bg-grey-lighter text-grey-darker
+                                        border border-red rounded py-3 px-4 mb-3" id="grid-expiry_date" type="date"
+                                               min="{{ now()->toDateString('Y-m-d') }}">
+                                    </div>
+                                </div>
+                                <div class="-mx-3 md:flex mb-1">
+                                    <div class="md:w-1/2 px-3">
                                         <label
                                             class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                                             for="grid-data_of_birth">
@@ -99,13 +114,22 @@
                                         block w-full bg-grey-lighter text-grey-darker
                                         border border-red rounded py-3 px-4 mb-3" id="grid-data_of_birth" type="date">
                                     </div>
-
-                                </div>
-
-
-                                <div class="-mx-3 md:flex mb-1">
-
-                                    <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+                                    <div class="md:w-1/2 px-3">
+                                        <label
+                                            class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                            for="gender">
+                                            Gender
+                                        </label>
+                                        <select name="gender" id="gender"
+                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                                                required="">
+                                            <option value="" selected="">Please Select</option>
+                                            <option value="Male" @if($employee->gender === "Male") selected @endif >Male</option>
+                                            <option value="Female" @if($employee->gender === "Female") selected @endif >Female</option>
+                                            <option value="Transgender" @if($employee->gender === "Transgender") selected @endif >Transgender</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:w-1/2 px-3">
                                         <label
                                             class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                                             for="district_city">
@@ -127,34 +151,15 @@
                                             <option value="Sudhnati" @if($employee->district_city === "Sudhnati") selected @endif  >Sudhnati</option>
                                         </select>
                                     </div>
-
+                                </div>
+                                <div class="-mx-3 md:flex mb-3">
                                     <div class="md:w-1/2 px-3">
-                                        <label
-                                            class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                                            for="gender">
-                                            Gender
-                                        </label>
-                                        <select name="gender" id="gender"
-                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                                                required="">
-                                            <option value="" selected="">Please Select</option>
-                                            <option value="Male" @if($employee->gender === "Male") selected @endif >Male</option>
-                                            <option value="Female" @if($employee->gender === "Female") selected @endif >Female</option>
-                                            <option value="Transgender" @if($employee->gender === "Transgender") selected @endif >Transgender</option>
-                                        </select>
-                                    </div>
-                                    <div class="md:w-1/2 px-3 mb-6 md:mb-0">
                                         <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-mobile">
                                             Mobile number
                                         </label>
                                         <input name="mobile" placeholder="0300-1234567" minlength="12" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="grid-mobile" type="text" value="{{$employee->mobile}}">
                                     </div>
-                                </div>
-
-
-                                <div class="-mx-3 md:flex mb-3">
-
-                                    <div class="md:w-1/3 px-3">
+                                    <div class="md:w-1/2 px-3">
                                         <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-email">
                                             email
                                         </label>
@@ -162,8 +167,7 @@
                                             text-grey-darker border border-grey-lighter rounded py-3 px-4" id="grid-email"
                                                type="email" value="{{$employee->email}}" >
                                     </div>
-
-                                    <div class="md:w-1/3 px-3 mb-6 md:mb-0">
+                                    <div class="md:w-1/2 px-3">
                                         <label
                                             class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                                             for="grid-emergency_contact">
@@ -173,9 +177,25 @@
                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
                                                id="grid-emergency_contact" type="tel" value="{{$employee->emergency_contact}}">
                                     </div>
-
-
-                                    <div class="md:w-1/3 px-3 mb-6 md:mb-0">
+                                </div>
+                                <div class="-mx-3 md:flex mb-3">
+                                    <div class="md:w-1/2 px-3 ">
+                                        <label
+                                            class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                            for="grid-employee-code">
+                                            Employee Code
+                                        </label>
+                                        <input name="employee_code" value="{{$employee->employee_code}}" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="grid-employee-code" type="text">
+                                    </div>
+                                    <div class="md:w-1/2 px-3 ">
+                                        <label
+                                            class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                            for="grid-employee-salary">
+                                            Salary
+                                        </label>
+                                        <input name="employee_salary" value="{{$employee->employee_salary}}" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="grid-employee-salary" type="text">
+                                    </div>
+                                    <div class="md:w-1/2 px-3">
                                         <label
                                             class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                                             for="grid-file_path">
@@ -184,37 +204,6 @@
                                         <input name="file_path"
                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
                                                id="grid-file_path" type="file">
-                                    </div>
-
-
-
-                                </div>
-
-
-                                <div class="-mx-3 md:flex mb-3">
-                                    <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-                                        <label
-                                            class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                                            for="grid-issue_date">
-                                            CNIC Issue Date
-                                        </label>
-                                        <input name="issue_date" onkeydown="return false" value="{{$employee->issue_date}}"
-                                               class="appearance-none
-                                        block w-full bg-grey-lighter text-grey-darker
-                                        border border-red rounded py-3 px-4 mb-3" id="grid-issue_date" type="date"
-                                               max="{{ now()->toDateString('Y-m-d') }}">
-                                    </div>
-                                    <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-                                        <label
-                                            class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                                            for="grid-expiry_date">
-                                            CNIC Expiry Date
-                                        </label>
-                                        <input name="expiry_date" onkeydown="return false"
-                                               value="{{$employee->expiry_date}}" class="appearance-none
-                                        block w-full bg-grey-lighter text-grey-darker
-                                        border border-red rounded py-3 px-4 mb-3" id="grid-expiry_date" type="date"
-                                               min="{{ now()->toDateString('Y-m-d') }}">
                                     </div>
                                 </div>
 

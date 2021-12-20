@@ -1,7 +1,10 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <div class="flex flex-col justify-start items-center">
+                <x-jet-authentication-card-logo />
+                <h1 class="font-bold text-lg md:text-2xl text-gray-600 leading-tight mt-4">{{config('app.name')}}</h1>
+            </div>
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />

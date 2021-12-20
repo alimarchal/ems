@@ -1,7 +1,10 @@
 <x-guest-layout >
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <div class="flex flex-col justify-start items-center">
+                <x-jet-authentication-card-logo />
+                <h1 class="font-bold text-lg md:text-2xl text-gray-600 leading-tight mt-2 mb-6 text-center">{{config('app.name')}}</h1>
+            </div>
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
@@ -11,7 +14,6 @@
                 {{ session('status') }}
             </div>
         @endif
-
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
@@ -44,5 +46,7 @@
                 </x-jet-button>
             </div>
         </form>
+
+
     </x-jet-authentication-card>
 </x-guest-layout>

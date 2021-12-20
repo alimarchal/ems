@@ -33,14 +33,9 @@
                                 <div class="mt-1 text-base  font-bold text-gray-600">Vacant Post</div>
                             </div>
                             <div class="col-span-1 flex items-center justify-end">
-{{--                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
-{{--                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />--}}
-{{--                                </svg>--}}
-
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7a4 4 0 11-8 0 4 4 0 018 0zM9 14a6 6 0 00-6 6v1h12v-1a6 6 0 00-6-6zM21 12h-6" />
                                 </svg>
-
                             </div>
                         </div>
                     </div>
@@ -50,16 +45,10 @@
                         <div class="grid grid-cols-3 gap-1">
                             <div class="col-span-2">
                                 <div class="text-3xl font-bold leading-8">{{$legal_case}}</div>
-
                                 <div class="mt-1 text-base  font-bold text-gray-600">Legal cases</div>
                             </div>
                             <div class="col-span-1 flex items-center justify-end">
-
                                 <img src="https://cdn-icons-png.flaticon.com/512/186/186359.png" alt="legal case" class="h-12 w-12">
-
-{{--                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
-{{--                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />--}}
-{{--                                </svg>--}}
                             </div>
                         </div>
                     </div>
@@ -69,43 +58,104 @@
                         <div class="grid grid-cols-3 gap-1">
                             <div class="col-span-2">
                                 <div class="text-3xl font-bold leading-8">{{$OnLeave}}</div>
-
                                 <div class="mt-1 text-base  font-bold text-gray-600">Employees on leave</div>
                             </div>
                             <div class="col-span-1 flex items-center justify-end">
-
                                 <img src="https://cdn-icons-png.flaticon.com/512/914/914612.png" alt="employees on leave" class="h-12 w-12">
-
-
-
-{{--                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
-{{--                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />--}}
-{{--                                </svg>--}}
                             </div>
                         </div>
                     </div>
                 </a>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mt-6">
-                <div class="bg-white col-span-4 lg:col-span-2 rounded-lg shadow-lg p-4"  id="gender_chart"></div>
-                <div class="bg-white col-span-4 lg:col-span-2 rounded-lg shadow-lg p-4" id="age_chart"></div>
+            <div class="grid grid-cols-1 lg:grid-cols-6 gap-6 mt-6">
+                <div class="col-span-6 md:col-span-6 lg:col-span-2">
+                    <div class="bg-white rounded-lg shadow-lg p-4" id="service_length_chart"></div>
+                    <div class="bg-white rounded-lg shadow-lg p-4 mt-4" id="retirment_in_chart"></div>
+                </div>
+                <div class="col-span-6 md:col-span-3 lg:col-span-2">
+                    <div class="bg-white rounded-lg shadow-lg p-4"  id="gender_chart"></div>
+                </div>
+                <div class="col-span-6 md:col-span-3 lg:col-span-2">
+                    <div class="bg-white rounded-lg shadow-lg p-4" id="age_chart"></div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-6 gap-6 mt-6">
+                <div class="col-span-6 md:col-span-3">
+                    <div class="bg-white rounded-lg shadow-lg p-4"  id="salary_chart"></div>
+                </div>
+                <div class="col-span-6 md:col-span-3">
+                    <div class="bg-white rounded-lg shadow-lg p-4" id="scale_chart"></div>
+                </div>
             </div>
         </div>
     </div>
 
 
     <script>
-        var options = {
+        var gender_options = {
             series: [@foreach($gender as $g){{$g->total}},@endforeach],
+            dataLabels: {
+                formatter: function (val, opts) {
+                    return opts.w.config.series[opts.seriesIndex]
+                },
+            },
             chart: {
                 width: '100%',
+                height: '400px',
                 type: 'pie',
+                toolbar: {
+                    show: true,
+                    offsetX: 0,
+                    offsetY: 0,
+                    tools: {
+                        download: true,
+                        selection: true,
+                        zoom: true,
+                        zoomin: true,
+                        zoomout: true,
+                        pan: true,
+                        reset: true | '<img src="/static/icons/reset.png" width="20">',
+                        customIcons: []
+                    },
+                    export: {
+                        csv: {
+                            filename: undefined,
+                            columnDelimiter: ',',
+                            headerCategory: 'category',
+                            headerValue: 'value',
+                            dateFormatter(timestamp) {
+                                return new Date(timestamp).toDateString()
+                            }
+                        },
+                        svg: {
+                            filename: undefined,
+                        },
+                        png: {
+                            filename: undefined,
+                        }
+                    },
+                    autoSelected: 'zoom'
+                },
             },
             labels: [@foreach($gender as $g)'{{$g->gender}}',@endforeach],
             legend: {
                 position: 'bottom',
             },
+            title: {
+                text: 'Gender Segregation',
+                align: 'left',
+                margin: 0,
+                offsetX: 0,
+                offsetY: 0,
+                floating: false,
+                style: {
+                    fontSize:  '16px',
+                    fontWeight:  'bold',
+                    fontFamily:  undefined,
+                    color:  '#263238'
+                },
+            },
             responsive: [{
                 breakpoint: 480,
                 options: {
@@ -118,24 +168,81 @@
                 }
             }]
         };
-
-        var gender_chart = new ApexCharts(document.querySelector("#gender_chart"), options);
+        var gender_chart = new ApexCharts(document.querySelector("#gender_chart"), gender_options);
         gender_chart.render();
 
-        var options_age = {
+        var age_options = {
             series: [@foreach($age_range as $g){{$g->count}},@endforeach],
+            dataLabels: {
+                formatter: function (val, opts) {
+                    return opts.w.config.series[opts.seriesIndex]
+                },
+            },
             chart: {
                 width: '100%',
-                type: 'pie',
+                type: 'donut',
+                height: '400px',
+                toolbar: {
+                    show: true,
+                    offsetX: 0,
+                    offsetY: 0,
+                    tools: {
+                        download: true,
+                        selection: true,
+                        zoom: true,
+                        zoomin: true,
+                        zoomout: true,
+                        pan: true,
+                        reset: true | '<img src="/static/icons/reset.png" width="20">',
+                        customIcons: []
+                    },
+                    export: {
+                        csv: {
+                            filename: undefined,
+                            columnDelimiter: ',',
+                            headerCategory: 'category',
+                            headerValue: 'value',
+                            dateFormatter(timestamp) {
+                                return new Date(timestamp).toDateString()
+                            }
+                        },
+                        svg: {
+                            filename: undefined,
+                        },
+                        png: {
+                            filename: undefined,
+                        }
+                    },
+                    autoSelected: 'zoom'
+                },
+            },
+            theme: {
+                monochrome: {
+                    enabled: true,
+                    color: '#255aee',
+                    shadeTo: 'light',
+                    shadeIntensity: 0.65
+                }
             },
 
-            markers: {
-                colors: ['#F44336', '#E91E63', '#9C27B0']
-            },
             labels: [@foreach($age_range as $g)'{{$g->range}}',@endforeach],
             legend: {
                 position: 'bottom',
             },
+            title: {
+                text: 'Age Classification',
+                align: 'left',
+                margin: 0,
+                offsetX: 0,
+                offsetY: 0,
+                floating: false,
+                style: {
+                    fontSize:  '16px',
+                    fontWeight:  'bold',
+                    fontFamily:  undefined,
+                    color:  '#263238'
+                },
+            },
             responsive: [{
                 breakpoint: 480,
                 options: {
@@ -148,8 +255,383 @@
                 }
             }]
         };
-        var age_chart = new ApexCharts(document.querySelector("#age_chart"), options_age);
+        var age_chart = new ApexCharts(document.querySelector("#age_chart"), age_options);
         age_chart.render();
+
+        var service_length_options = {
+            series: [@foreach($service_lengths as $key=>$value){{$value}},@endforeach],
+            dataLabels: {
+                formatter: function (val, opts) {
+                    return opts.w.config.series[opts.seriesIndex]
+                },
+            },
+            chart: {
+                width: '100%',
+                type: 'donut',
+                height:'180px',
+                toolbar: {
+                    show: true,
+                    offsetX: 0,
+                    offsetY: 0,
+                    tools: {
+                        download: true,
+                        selection: true,
+                        zoom: true,
+                        zoomin: true,
+                        zoomout: true,
+                        pan: true,
+                        reset: true | '<img src="/static/icons/reset.png" width="20">',
+                        customIcons: []
+                    },
+                    export: {
+                        csv: {
+                            filename: undefined,
+                            columnDelimiter: ',',
+                            headerCategory: 'category',
+                            headerValue: 'value',
+                            dateFormatter(timestamp) {
+                                return new Date(timestamp).toDateString()
+                            }
+                        },
+                        svg: {
+                            filename: undefined,
+                        },
+                        png: {
+                            filename: undefined,
+                        }
+                    },
+                    autoSelected: 'zoom'
+                },
+            },
+            plotOptions: {
+                pie: {
+                    startAngle: -90,
+                    endAngle: 90,
+                    offsetY: 10
+                }
+            },
+            theme: {
+                monochrome: {
+                    enabled: true,
+                    color: '#059f0f',
+                    shadeTo: 'dark',
+                    shadeIntensity: 0.65
+                }
+            },
+            markers: {
+                colors: ['#F44336', '#E91E63', '#9C27B0']
+            },
+            labels: [@foreach($service_lengths as $key=>$value)'{{$key}}',@endforeach],
+            legend: {
+                position: 'right',
+
+            },
+            title: {
+                text: 'Service Length Division',
+                align: 'left',
+                margin: 0,
+                offsetX: 0,
+                offsetY: 0,
+                floating: false,
+                style: {
+                    fontSize:  '16px',
+                    fontWeight:  'bold',
+                    fontFamily:  undefined,
+                    color:  '#263238'
+                },
+            },
+            grid: {
+                padding: {
+                    bottom: -70
+                }
+            },
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+        var service_length_chart = new ApexCharts(document.querySelector("#service_length_chart"), service_length_options);
+        service_length_chart.render();
+
+        var retirment_in_options = {
+            series: [@foreach($retirment_in as $key=>$value){{$value}},@endforeach],
+            dataLabels: {
+                formatter: function (val, opts) {
+                    return opts.w.config.series[opts.seriesIndex]
+                },
+            },
+            chart: {
+                width: '100%',
+                type: 'donut',
+                height:'180px',
+                toolbar: {
+                    show: true,
+                    offsetX: 0,
+                    offsetY: 0,
+                    tools: {
+                        download: true,
+                        selection: true,
+                        zoom: true,
+                        zoomin: true,
+                        zoomout: true,
+                        pan: true,
+                        reset: true | '<img src="/static/icons/reset.png" width="20">',
+                        customIcons: []
+                    },
+                    export: {
+                        csv: {
+                            filename: undefined,
+                            columnDelimiter: ',',
+                            headerCategory: 'category',
+                            headerValue: 'value',
+                            dateFormatter(timestamp) {
+                                return new Date(timestamp).toDateString()
+                            }
+                        },
+                        svg: {
+                            filename: undefined,
+                        },
+                        png: {
+                            filename: undefined,
+                        }
+                    },
+                    autoSelected: 'zoom'
+                },
+            },
+            plotOptions: {
+                pie: {
+                    startAngle: -90,
+                    endAngle: 90,
+                    offsetY: 10
+                }
+            },
+            theme: {
+                monochrome: {
+                    enabled: true,
+                    color: '#ee2525',
+                    shadeTo: 'light',
+                    shadeIntensity: 0.65
+                }
+            },
+            markers: {
+                colors: ['#F44336', '#E91E63', '#9C27B0']
+            },
+            labels: [@foreach($retirment_in as $key=>$value)'{{$key}}',@endforeach],
+            legend: {
+                position: 'right',
+
+            },
+            title: {
+                text: 'Upcoming Retirements',
+                align: 'left',
+                margin: 0,
+                offsetX: 0,
+                offsetY: 0,
+                floating: false,
+                style: {
+                    fontSize:  '16px',
+                    fontWeight:  'bold',
+                    fontFamily:  undefined,
+                    color:  '#263238'
+                },
+            },
+            grid: {
+                padding: {
+                    bottom: -100
+                }
+            },
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+        var retirment_in_chart = new ApexCharts(document.querySelector("#retirment_in_chart"), retirment_in_options);
+        retirment_in_chart.render();
+
+
+        var scale_options = {
+            series: [@foreach($scale_division as  $key=>$value){{$value}},@endforeach],
+            dataLabels: {
+                formatter: function (val, opts) {
+                    return opts.w.config.series[opts.seriesIndex]
+                },
+            },
+            chart: {
+                width: '100%',
+                height: '400px',
+                type: 'pie',
+                toolbar: {
+                    show: true,
+                    offsetX: 0,
+                    offsetY: 0,
+                    tools: {
+                        download: true,
+                        selection: true,
+                        zoom: true,
+                        zoomin: true,
+                        zoomout: true,
+                        pan: true,
+                        reset: true | '<img src="/static/icons/reset.png" width="20">',
+                        customIcons: []
+                    },
+                    export: {
+                        csv: {
+                            filename: undefined,
+                            columnDelimiter: ',',
+                            headerCategory: 'category',
+                            headerValue: 'value',
+                            dateFormatter(timestamp) {
+                                return new Date(timestamp).toDateString()
+                            }
+                        },
+                        svg: {
+                            filename: undefined,
+                        },
+                        png: {
+                            filename: undefined,
+                        }
+                    },
+                    autoSelected: 'zoom'
+                },
+            },
+            theme: {
+                palette: 'palette3' // upto palette10
+            },
+            labels: [@foreach($scale_division as $key=>$value)'{{$key}}',@endforeach],
+            legend: {
+                position: 'bottom',
+            },
+            title: {
+                text: 'Scale Classification',
+                align: 'left',
+                margin: 0,
+                offsetX: 0,
+                offsetY: 0,
+                floating: false,
+                style: {
+                    fontSize:  '16px',
+                    fontWeight:  'bold',
+                    fontFamily:  undefined,
+                    color:  '#263238'
+                },
+            },
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+        var scale_chart = new ApexCharts(document.querySelector("#scale_chart"), scale_options);
+        scale_chart.render();
+
+        var salary_options = {
+            series: [@foreach($salary_division as  $key=>$value){{$value}},@endforeach],
+            dataLabels: {
+                formatter: function (val, opts) {
+                    return opts.w.config.series[opts.seriesIndex]
+                },
+            },
+            chart: {
+                width: '100%',
+                type: 'donut',
+                height: '400px',
+                toolbar: {
+                    show: true,
+                    offsetX: 0,
+                    offsetY: 0,
+                    tools: {
+                        download: true,
+                        selection: true,
+                        zoom: true,
+                        zoomin: true,
+                        zoomout: true,
+                        pan: true,
+                        reset: true | '<img src="/static/icons/reset.png" width="20">',
+                        customIcons: []
+                    },
+                    export: {
+                        csv: {
+                            filename: undefined,
+                            columnDelimiter: ',',
+                            headerCategory: 'category',
+                            headerValue: 'value',
+                            dateFormatter(timestamp) {
+                                return new Date(timestamp).toDateString()
+                            }
+                        },
+                        svg: {
+                            filename: undefined,
+                        },
+                        png: {
+                            filename: undefined,
+                        }
+                    },
+                    autoSelected: 'zoom'
+                },
+            },
+            theme: {
+                monochrome: {
+                    enabled: true,
+                    color: '#ee9025',
+                    shadeTo: 'dark',
+                    shadeIntensity: 0.65
+                }
+            },
+            markers: {
+                colors: ['#F44336', '#E91E63', '#9C27B0']
+            },
+            labels: [@foreach($salary_division as  $key=>$value)'{{$key}}',@endforeach],
+            legend: {
+                position: 'bottom',
+            },
+            title: {
+                text: 'Salary Division',
+                align: 'left',
+                margin: 0,
+                offsetX: 0,
+                offsetY: 0,
+                floating: false,
+                style: {
+                    fontSize:  '16px',
+                    fontWeight:  'bold',
+                    fontFamily:  undefined,
+                    color:  '#263238'
+                },
+            },
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+        var salary_chart = new ApexCharts(document.querySelector("#salary_chart"), salary_options);
+        salary_chart.render();
     </script>
 
 </x-app-layout>

@@ -134,8 +134,12 @@
                                                 class="bg-green-500 py-1 px-2 rounded text-white text-sm">Active</span></span>
                                     </li>
                                     <li class="flex items-center py-3">
-                                        <span>Member since</span>
-                                        <span class="ml-auto">{{\Carbon\Carbon::parse($employee->created_at)->format('d-m-Y')}}</span>
+                                        <span>Employee since</span>
+                                        <span class="ml-auto">{{\Carbon\Carbon::parse($employee->appointment->appointment_date)->format('d-m-Y')}}</span>
+                                    </li>
+                                    <li class="flex items-center py-3">
+                                        <span>Salary</span>
+                                        <span class="ml-auto">PKR. {{$employee->employee_salary}}</span>
                                     </li>
                                 </ul>
                             </div>

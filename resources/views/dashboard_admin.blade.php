@@ -60,7 +60,7 @@
                                 <div class="p-5">
                                     <div class="grid grid-cols-3 gap-1">
                                         <div class="col-span-2 flex items-center">
-                                            <div class="text-base  font-bold text-gray-600">Sub-Departments</div>
+                                            <div class="text-base  font-bold text-gray-600">Directorates</div>
                                         </div>
                                         <div class="col-span-1 flex items-center justify-end">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -145,7 +145,7 @@
                                 <div class="p-5">
                                     <div class="grid grid-cols-3 gap-1">
                                         <div class="col-span-2 flex items-center">
-                                            <div class="text-base  font-bold text-gray-600">Create Sub-Department</div>
+                                            <div class="text-base  font-bold text-gray-600">Create Directorate</div>
                                         </div>
                                         <div class="col-span-1 flex items-center justify-end">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">

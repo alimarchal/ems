@@ -1,7 +1,10 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <div class="flex flex-col justify-start items-center">
+                <x-jet-authentication-card-logo />
+                <h1 class="font-bold text-lg md:text-2xl text-gray-600 leading-tight mt-4">{{config('app.name')}}</h1>
+            </div>
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
@@ -19,7 +22,7 @@
         <form method="POST" action="{{ route('password.email') }}">
             @csrf
 
-            <div class="block">
+            <div>
                 <x-jet-label for="email" value="{{ __('Email') }}" />
                 <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             </div>

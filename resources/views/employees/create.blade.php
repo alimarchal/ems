@@ -25,8 +25,12 @@
         </div>
     </x-slot>
 
-    <div class="py-6">
+    <div>
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+
+
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
 
                 <div class="p-6 sm:px-10 bg-white border-b border-gray-200">
@@ -39,17 +43,7 @@
                             @csrf
                             <div class="bg-white rounded px-8 pt-6 pb-8 ">
                                 <div class="-mx-3 md:flex mb-1">
-                                    <div class="md:w-1/2 px-3 ">
-                                        <label
-                                            class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                                            for="grid-employee-code">
-                                            employee code
-                                        </label>
-                                        <input name="employee_code" value="{{old('employee_code')}}"
-                                               class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                                               id="grid-employee-code" type="text">
-                                    </div>
-                                    <div class="md:w-1/2 px-3 ">
+                                    <div class="md:w-1/2 px-3">
                                         <label
                                             class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                                             for="grid-first_name">
@@ -69,10 +63,6 @@
                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
                                                id="grid-last_name" value="{{old('last_name')}}" type="text">
                                     </div>
-                                </div>
-
-
-                                <div class="-mx-3 md:flex mb-1">
                                     <div class="md:w-1/2 px-3">
                                         <label
                                             class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
@@ -84,8 +74,9 @@
                                                id="grid-father_husband_name" value="{{old('father_husband_name')}}"
                                                type="text">
                                     </div>
-
-                                    <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+                                </div>
+                                <div class="-mx-3 md:flex mb-1">
+                                    <div class="md:w-1/2 px-3">
                                         <label
                                             class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                                             for="grid-cnic">
@@ -96,9 +87,33 @@
                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
                                                id="grid-cnic" type="text" value="{{old('cnic')}}">
                                     </div>
-
-
-                                    <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+                                    <div class="md:w-1/2 px-3">
+                                        <label
+                                            class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                            for="grid-issue_date">
+                                            CNIC Issue Date
+                                        </label>
+                                        <input name="issue_date" onkeydown="return false" value="{{old('issue_date')}}"
+                                               class="appearance-none
+                                        block w-full bg-grey-lighter text-grey-darker
+                                        border border-red rounded py-3 px-4 mb-3" id="grid-issue_date" type="date"
+                                               max="{{ now()->toDateString('Y-m-d') }}">
+                                    </div>
+                                    <div class="md:w-1/2 px-3">
+                                        <label
+                                            class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                            for="grid-expiry_date">
+                                            CNIC Expiry Date
+                                        </label>
+                                        <input name="expiry_date" onkeydown="return false"
+                                               value="{{old('expiry_date')}}" class="appearance-none
+                                        block w-full bg-grey-lighter text-grey-darker
+                                        border border-red rounded py-3 px-4 mb-3" id="grid-expiry_date" type="date"
+                                               min="{{ now()->toDateString('Y-m-d') }}">
+                                    </div>
+                                </div>
+                                <div class="-mx-3 md:flex mb-1">
+                                    <div class="md:w-1/2 px-3">
                                         <label
                                             class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                                             for="grid-data_of_birth">
@@ -110,15 +125,27 @@
                                         border border-red rounded py-3 px-4 mb-3" id="grid-data_of_birth" type="date"
                                                max="{{ now()->toDateString('Y-m-d') }}">
                                     </div>
-
-
-                                </div>
-
-
-                                <div class="-mx-3 md:flex mb-1">
-
-
-                                    <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+                                    <div class="md:w-1/2 px-3">
+                                        <label
+                                            class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                            for="gender">
+                                            Gender
+                                        </label>
+                                        <select name="gender" id="gender"
+                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                                                required="">
+                                            <option value="" selected="">Please Select</option>
+                                            <option value="Male" @if(old('gender') === "Male") selected @endif >Male
+                                            </option>
+                                            <option value="Female" @if(old('gender') === "Female") selected @endif >
+                                                Female
+                                            </option>
+                                            <option value="Transgender"
+                                                    @if(old('gender') === "Transgender") selected @endif >Transgender
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="md:w-1/2 px-3">
                                         <label
                                             class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                                             for="district_city">
@@ -162,28 +189,9 @@
                                             </option>
                                         </select>
                                     </div>
-
+                                </div>
+                                <div class="-mx-3 md:flex mb-3">
                                     <div class="md:w-1/2 px-3">
-                                        <label
-                                            class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                                            for="gender">
-                                            Gender
-                                        </label>
-                                        <select name="gender" id="gender"
-                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-                                                required="">
-                                            <option value="" selected="">Please Select</option>
-                                            <option value="Male" @if(old('gender') === "Male") selected @endif >Male
-                                            </option>
-                                            <option value="Female" @if(old('gender') === "Female") selected @endif >
-                                                Female
-                                            </option>
-                                            <option value="Transgender"
-                                                    @if(old('gender') === "Transgender") selected @endif >Transgender
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="md:w-1/2 px-3 mb-6 md:mb-0">
                                         <label
                                             class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                                             for="grid-mobile">
@@ -193,12 +201,7 @@
                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
                                                id="grid-mobile" type="text" value="{{old('mobile')}}">
                                     </div>
-                                </div>
-
-
-                                <div class="-mx-3 md:flex mb-3">
-
-                                    <div class="md:w-1/3 px-3">
+                                    <div class="md:w-1/2 px-3">
                                         <label
                                             class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                                             for="grid-email">
@@ -209,8 +212,7 @@
                                                id="grid-email"
                                                type="email" value="{{old('email')}}">
                                     </div>
-
-                                    <div class="md:w-1/3 px-3 mb-6 md:mb-0">
+                                    <div class="md:w-1/2 px-3">
                                         <label
                                             class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                                             for="grid-emergency_contact">
@@ -221,9 +223,29 @@
                                                id="grid-emergency_contact" type="tel"
                                                value="{{old('emergency_contact')}}">
                                     </div>
-
-
-                                    <div class="md:w-1/3 px-3 mb-6 md:mb-0">
+                                </div>
+                                <div class="-mx-3 md:flex mb-3">
+                                    <div class="md:w-1/2 px-3">
+                                        <label
+                                            class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                            for="grid-employee-code">
+                                            employee code
+                                        </label>
+                                        <input name="employee_code" value="{{old('employee_code')}}"
+                                               class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                                               id="grid-employee-code" type="text">
+                                    </div>
+                                    <div class="md:w-1/2 px-3">
+                                        <label
+                                            class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                                            for="grid-employee-salary">
+                                           Salary
+                                        </label>
+                                        <input name="employee_salary" value="{{old('employee_salary')}}"
+                                               class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                                               id="grid-employee-salary" type="text">
+                                    </div>
+                                    <div class="md:w-1/2 px-3">
                                         <label
                                             class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                                             for="grid-file_path">
@@ -232,34 +254,6 @@
                                         <input name="file_path"
                                                class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
                                                id="grid-file_path" type="file">
-                                    </div>
-
-                                </div>
-
-                                <div class="-mx-3 md:flex mb-3">
-                                    <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-                                        <label
-                                            class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                                            for="grid-issue_date">
-                                            CNIC Issue Date
-                                        </label>
-                                        <input name="issue_date" onkeydown="return false" value="{{old('issue_date')}}"
-                                               class="appearance-none
-                                        block w-full bg-grey-lighter text-grey-darker
-                                        border border-red rounded py-3 px-4 mb-3" id="grid-issue_date" type="date"
-                                               max="{{ now()->toDateString('Y-m-d') }}">
-                                    </div>
-                                    <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-                                        <label
-                                            class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                                            for="grid-expiry_date">
-                                            CNIC Expiry Date
-                                        </label>
-                                        <input name="expiry_date" onkeydown="return false"
-                                               value="{{old('expiry_date')}}" class="appearance-none
-                                        block w-full bg-grey-lighter text-grey-darker
-                                        border border-red rounded py-3 px-4 mb-3" id="grid-expiry_date" type="date"
-                                               min="{{ now()->toDateString('Y-m-d') }}">
                                     </div>
                                 </div>
 
