@@ -20,7 +20,12 @@
 
 {{--        <script src="{{ url('js/jquery-3.6.0.min.js') }}"></script>--}}
         <script src="{{ mix('js/app.js') }}" defer></script>
-        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        @if(Route::is('leave.*') )
+            <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
+        @else
+            <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        @endif
+
 
 
     </head>

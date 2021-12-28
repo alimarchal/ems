@@ -3,8 +3,11 @@
 
     <div class="pb-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-center space-x-4">
-                <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg">
+
+
+            <div class="flex flex-wrap -mx-2 overflow-hidden sm:-mx-2 md:-mx-2 lg:-mx-4 xl:-mx-4 ">
+
+                <div class="my-2 px-2 w-full  mt-4 p-4  rounded-xl bg-white shadow-lg overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-4 lg:px-4 lg:w-1/2 xl:my-4 xl:px-4 xl:w-1/2">
                     <h1 class="text-xl font-bold text-gray-800 mt-4">Manage Records</h1>
                     <div class="grid grid-cols-12 gap-6 mt-5">
                         @can('Create Employee')
@@ -89,7 +92,8 @@
                         @endcan
                     </div>
                 </div>
-                <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg">
+
+                <div class="my-2 px-2 w-full  mt-4 p-4  rounded-xl bg-white shadow-lg  overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-4 lg:px-4 lg:w-1/2 xl:my-4 xl:px-4 xl:w-1/2">
                     <h1 class="text-xl font-bold text-gray-800 mt-4">Create New</h1>
                     <div class="grid grid-cols-12 gap-6 mt-5">
                         @can('Create Employee')
@@ -174,6 +178,7 @@
                         @endcan
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

@@ -84,7 +84,14 @@
 
                                                     <div class="col-span-6">
                                                         <label for="reason" class="block text-sm font-medium text-gray-700">Reason</label>
-                                                        <textarea id="reason" name="reason" required="required" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 @error('reason') border-red-500 @enderror rounded-md" placeholder="Reason...">{{$leave->reason}}</textarea>
+                                                        <input type="text" list="browsers" id="reason" name="reason" required="required" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 @error('reason') border-red-500 @enderror rounded-md"
+                                                               placeholder="Reason..." value="{{$leave->reason}}">
+                                                        <datalist id="browsers">
+                                                            <option value="Paid leave">
+                                                            <option value="Sick leave">
+                                                            <option value="Unpaid leave">
+                                                        </datalist>
+
                                                         @error('reason')<span class="text-red-500 mt-1 text-sm">{{ $message }}</span>@enderror
                                                     </div>
 

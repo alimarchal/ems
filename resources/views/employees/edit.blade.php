@@ -236,16 +236,15 @@
                                         block w-full bg-grey-lighter text-grey-darker
                                         border border-red rounded py-3 px-4 mb-3">
                                             <option value="" selected="">Please Select</option>
-                                            <option value="Muzaffarabad" @if($employee->appointment->designation === "Muzaffarabad") selected @endif >Muzaffarabad</option>
-                                            <option value="Hattian Bala" @if($employee->appointment->designation === "Hattian Bala") selected @endif  >Hattian Bala</option>
-                                            <option value="Neelum" @if($employee->appointment->designation === "Neelum") selected @endif  >Neelum</option>
-                                            <option value="Mirpur" @if($employee->appointment->designation === "Mirpur") selected @endif  >Mirpur</option>
-                                            <option value="Bhimber" @if($employee->appointment->designation === "Bhimber") selected @endif  >Bhimber</option>
-                                            <option value="Kotli" @if($employee->appointment->designation === "Kotli") selected @endif  >Kotli</option>
-                                            <option value="Poonch" @if($employee->appointment->designation === "Poonch") selected @endif  >Poonch</option>
-                                            <option value="Bagh" @if($employee->appointment->designation === "Bagh") selected @endif  >Bagh</option>
-                                            <option value="Haveli" @if($employee->appointment->designation === "Haveli") selected @endif  >Haveli</option>
-                                            <option value="Sudhnati" @if($employee->appointment->designation === "Sudhnati") selected @endif  >Sudhnati</option>
+
+
+                                            @foreach(\App\Models\Designation::all() as $designation)
+                                                <option value="Muzaffarabad"
+                                                        @if($employee->appointment->designation === $designation->name) selected @endif >
+                                                    {{$designation->name}}
+                                                </option>
+
+                                            @endforeach
 
 
                                         </select>
